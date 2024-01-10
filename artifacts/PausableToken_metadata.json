@@ -6,32 +6,57 @@
 	"output": {
 		"abi": [
 			{
+				"inputs": [],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
 				"inputs": [
 					{
-						"internalType": "string",
-						"name": "_tweet",
-						"type": "string"
+						"internalType": "address",
+						"name": "",
+						"type": "address"
 					}
 				],
-				"name": "createTweet",
+				"name": "balances",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "owner",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "pause",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "_owner",
-						"type": "address"
-					}
-				],
-				"name": "getAllTweets",
+				"inputs": [],
+				"name": "paused",
 				"outputs": [
 					{
-						"internalType": "string[]",
+						"internalType": "bool",
 						"name": "",
-						"type": "string[]"
+						"type": "bool"
 					}
 				],
 				"stateMutability": "view",
@@ -41,48 +66,25 @@
 				"inputs": [
 					{
 						"internalType": "address",
-						"name": "_owner",
+						"name": "to",
 						"type": "address"
 					},
 					{
 						"internalType": "uint256",
-						"name": "_i",
+						"name": "amount",
 						"type": "uint256"
 					}
 				],
-				"name": "getTweet",
-				"outputs": [
-					{
-						"internalType": "string",
-						"name": "",
-						"type": "string"
-					}
-				],
-				"stateMutability": "view",
+				"name": "transfer",
+				"outputs": [],
+				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "",
-						"type": "address"
-					},
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"name": "tweets",
-				"outputs": [
-					{
-						"internalType": "string",
-						"name": "",
-						"type": "string"
-					}
-				],
-				"stateMutability": "view",
+				"inputs": [],
+				"name": "unpause",
+				"outputs": [],
+				"stateMutability": "nonpayable",
 				"type": "function"
 			}
 		],
@@ -99,7 +101,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"Teitter.sol": "Twitter"
+			"Modifier_Exercise.sol": "PausableToken"
 		},
 		"evmVersion": "shanghai",
 		"libraries": {},
@@ -113,12 +115,12 @@
 		"remappings": []
 	},
 	"sources": {
-		"Teitter.sol": {
-			"keccak256": "0x5538e5989851076ab08c5c69d6269737043ac9f21c361d7988cb706e5939bfb6",
+		"Modifier_Exercise.sol": {
+			"keccak256": "0xbb90291d86f7fb9b83e951ba95781049fade2b32b38bfa07d73c9f5cc8502e03",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://6f72a022ab784ca73eb1c41fb1a95cbe64c77322cbb4f794658e8c91945abf0b",
-				"dweb:/ipfs/QmXFL9i4Yiv7MFmSgn6f9d1DFFEoRLmDLGf2QQqYw65zV6"
+				"bzz-raw://9e2a3f6874ed9338e820cb4d66596a59caa8f9b7db2e145b30e24a3a633a7ceb",
+				"dweb:/ipfs/Qmcg2CPAzZXoNYHvhbxzptmTrRm4irdF8ejvDzo61WUquU"
 			]
 		}
 	},
