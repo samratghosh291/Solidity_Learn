@@ -191,6 +191,25 @@
 			{
 				"inputs": [
 					{
+						"internalType": "address",
+						"name": "_author",
+						"type": "address"
+					}
+				],
+				"name": "getTotalLikes",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
 						"internalType": "uint256",
 						"name": "_i",
 						"type": "uint256"
@@ -341,7 +360,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"Twitter_6.sol": "Twitter"
+			"Twitter_7.sol": "Twitter"
 		},
 		"evmVersion": "shanghai",
 		"libraries": {},
@@ -355,12 +374,12 @@
 		"remappings": []
 	},
 	"sources": {
-		"Twitter_6.sol": {
-			"keccak256": "0x3bb62029f9533d32bc9f5ae55c7f79d1108277738a016184056694d5c5fc63c2",
+		"Twitter_7.sol": {
+			"keccak256": "0x3b3d6885bc06259ad4b2645d998a78c15627a7beb41244e4866b5dfe02ff9b89",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://0b2c3a793989d70230cfa8919ee6e5c08a17a1b93a810eabc904d610f7b52436",
-				"dweb:/ipfs/QmRU4DuUiKvhz7UJwnmH13ycbPoj5BXi3Vm2VtL6aXaCED"
+				"bzz-raw://29c488b628590f6517f0a34656e8d403d88a4334ec305d3ebf1e54659461254f",
+				"dweb:/ipfs/QmWA1qA9HTaSnVw2Q8sfxcfLLRhb3Q8DN3RtY9c76Y6T29"
 			]
 		}
 	},
