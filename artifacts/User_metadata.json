@@ -9,47 +9,44 @@
 				"inputs": [
 					{
 						"internalType": "address",
-						"name": "_userContractAddress",
+						"name": "userAddress",
 						"type": "address"
-					}
-				],
-				"stateMutability": "nonpayable",
-				"type": "constructor"
-			},
-			{
-				"inputs": [],
-				"name": "gameCount",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
+					},
 					{
 						"internalType": "string",
 						"name": "username",
 						"type": "string"
 					}
 				],
-				"name": "startGame",
+				"name": "createUser",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
-				"inputs": [],
-				"name": "userContract",
-				"outputs": [
+				"inputs": [
 					{
-						"internalType": "contract IUser",
+						"internalType": "address",
 						"name": "",
 						"type": "address"
+					}
+				],
+				"name": "players",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "playerAddress",
+						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "username",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "score",
+						"type": "uint256"
 					}
 				],
 				"stateMutability": "view",
@@ -69,7 +66,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"Game_2_Inheritence.sol": "Game"
+			"User_1_Inheritence.sol": "User"
 		},
 		"evmVersion": "shanghai",
 		"libraries": {},
@@ -83,12 +80,12 @@
 		"remappings": []
 	},
 	"sources": {
-		"Game_2_Inheritence.sol": {
-			"keccak256": "0x24f0ac0ca40286d5c35dbb002ac9176b23e19e68876a7a47af6d9e2e0cecc264",
+		"User_1_Inheritence.sol": {
+			"keccak256": "0x22837008e67ecf68eb8851af2630c1688109f7004547425e2b4f2ceab3af85fe",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://d1a3deb5d7918f03e9259c0ce869a167469aed967544b8f58dae0365dd01e42e",
-				"dweb:/ipfs/QmT9ZEJJuVyPdsceAmCQZwaVreABFwXUKzKYHBtyJonXGz"
+				"bzz-raw://1ace962a9cf316af625ce7e9bc1fb7962c65ecc12afb2695f4121b566f3aa536",
+				"dweb:/ipfs/QmXd1jXS7U4Vjd3SAigDZae2GhWGqqvCsufxt8WAK5xBn5"
 			]
 		}
 	},

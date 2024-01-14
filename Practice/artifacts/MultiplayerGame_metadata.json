@@ -1,0 +1,72 @@
+{
+	"compiler": {
+		"version": "0.8.22+commit.4fc1097e"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"name": "joinGame",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "players",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"Practice/Inheritence_Game.sol": "MultiplayerGame"
+		},
+		"evmVersion": "shanghai",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"Practice/Inheritence_Game.sol": {
+			"keccak256": "0x39a1eb7fc09db2708ab76ea2db4971b0f871b0462c901656fcbedaf404a7a673",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://57f3f334550d2fdc89f774de2142e9f61b6474349ca27e47b519c048e94ef37f",
+				"dweb:/ipfs/QmSLxZmarkA3F18YQVNWXqdByEWY2NByAR5PhdipedUd1g"
+			]
+		}
+	},
+	"version": 1
+}
