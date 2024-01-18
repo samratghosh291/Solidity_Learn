@@ -2,6 +2,8 @@
 pragma solidity ^0.8.0;
 
 contract SupplyChainContract {
+    address public manufacturer;
+    address public distributor;
     address public seller;
     address public buyer;
 
@@ -33,6 +35,16 @@ contract SupplyChainContract {
     event OrderDelivered(uint256 orderId);
     event BuyerAddressSet(address indexed buyer);
 
+    modifier onlyManufacturer() {
+        require(msg.sender == manufacturer, "Only the manufacturer can call this function");
+        _;
+    }
+
+    modifier onlyDistributor() {
+        require(msg.sender == distributor, "Only the distributor can call this function");
+        _;
+    }
+
     modifier onlySeller() {
         require(msg.sender == seller, "Only the seller can call this function");
         _;
@@ -54,7 +66,15 @@ contract SupplyChainContract {
     }
 
     constructor() {
-        seller = msg.sender;
+        manufacturer = msg.sender;
+    }
+
+    function setDistributorAddress(address _distributor) external onlyManufacturer {
+        distributor = _distributor;
+    }
+
+    function setSellerAddress(address _seller) external onlyDistributor {
+        seller = _seller;
     }
 
     function setBuyerAddress(address _buyer) external onlySeller {
@@ -62,7 +82,7 @@ contract SupplyChainContract {
         emit BuyerAddressSet(_buyer);
     }
 
-    function addProduct(string memory _name, uint256 _price, uint256 _quantity) external onlySeller {
+    function addProduct(string memory _name, uint256 _price, uint256 _quantity) external onlyManufacturer {
         productCount++;
         uint256 productId = productCount;
 
@@ -76,7 +96,7 @@ contract SupplyChainContract {
         emit ProductAdded(productId, _name, _price, _quantity);
     }
 
-    function placeOrder(uint256 _productId, uint256 _quantity) external onlyBuyer productExists(_productId) {
+    function placeOrder(uint256 _productId, uint256 _quantity) external onlyDistributor productExists(_productId) {
         require(products[_productId].quantity >= _quantity, "Not enough stock");
 
         orderCount++;
@@ -84,23 +104,23 @@ contract SupplyChainContract {
 
         orders[orderId] = Order({
             orderId: orderId,
-            buyer: buyer,
+            buyer: distributor,
             productId: _productId,
             quantity: _quantity,
             status: OrderStatus.Placed
         });
 
-        emit OrderPlaced(orderId, buyer, _productId, _quantity);
+        emit OrderPlaced(orderId, distributor, _productId, _quantity);
     }
 
-    function shipOrder(uint256 _orderId) external onlySeller orderExists(_orderId) {
+    function shipOrder(uint256 _orderId) external onlyManufacturer orderExists(_orderId) {
         require(orders[_orderId].status == OrderStatus.Placed, "Order is not in a shippable state");
 
         orders[_orderId].status = OrderStatus.Shipped;
         emit OrderShipped(_orderId);
     }
 
-    function deliverOrder(uint256 _orderId) external onlyBuyer orderExists(_orderId) {
+    function deliverOrder(uint256 _orderId) external onlyDistributor orderExists(_orderId) {
         require(orders[_orderId].status == OrderStatus.Shipped, "Order is not in a deliverable state");
 
         orders[_orderId].status = OrderStatus.Delivered;
