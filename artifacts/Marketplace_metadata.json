@@ -14,13 +14,13 @@
 				"anonymous": false,
 				"inputs": [
 					{
-						"indexed": true,
-						"internalType": "address",
-						"name": "buyer",
-						"type": "address"
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "orderId",
+						"type": "uint256"
 					}
 				],
-				"name": "BuyerAddressSet",
+				"name": "OrderAccepted",
 				"type": "event"
 			},
 			{
@@ -33,7 +33,7 @@
 						"type": "uint256"
 					}
 				],
-				"name": "OrderDelivered",
+				"name": "OrderCompleted",
 				"type": "event"
 			},
 			{
@@ -44,12 +44,6 @@
 						"internalType": "uint256",
 						"name": "orderId",
 						"type": "uint256"
-					},
-					{
-						"indexed": true,
-						"internalType": "address",
-						"name": "buyer",
-						"type": "address"
 					},
 					{
 						"indexed": false,
@@ -59,25 +53,12 @@
 					},
 					{
 						"indexed": false,
-						"internalType": "uint256",
-						"name": "quantity",
-						"type": "uint256"
+						"internalType": "address",
+						"name": "buyer",
+						"type": "address"
 					}
 				],
 				"name": "OrderPlaced",
-				"type": "event"
-			},
-			{
-				"anonymous": false,
-				"inputs": [
-					{
-						"indexed": false,
-						"internalType": "uint256",
-						"name": "orderId",
-						"type": "uint256"
-					}
-				],
-				"name": "OrderShipped",
 				"type": "event"
 			},
 			{
@@ -103,13 +84,26 @@
 					},
 					{
 						"indexed": false,
-						"internalType": "uint256",
-						"name": "quantity",
-						"type": "uint256"
+						"internalType": "address",
+						"name": "seller",
+						"type": "address"
 					}
 				],
 				"name": "ProductAdded",
 				"type": "event"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_orderId",
+						"type": "uint256"
+					}
+				],
+				"name": "acceptOrder",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
 			},
 			{
 				"inputs": [
@@ -122,11 +116,6 @@
 						"internalType": "uint256",
 						"name": "_price",
 						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "_quantity",
-						"type": "uint256"
 					}
 				],
 				"name": "addProduct",
@@ -136,12 +125,51 @@
 			},
 			{
 				"inputs": [],
-				"name": "buyer",
+				"name": "admin",
 				"outputs": [
 					{
 						"internalType": "address",
 						"name": "",
 						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "buyerOrders",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "productId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "buyer",
+						"type": "address"
+					},
+					{
+						"internalType": "bool",
+						"name": "isAccepted",
+						"type": "bool"
+					},
+					{
+						"internalType": "bool",
+						"name": "isCompleted",
+						"type": "bool"
 					}
 				],
 				"stateMutability": "view",
@@ -155,61 +183,9 @@
 						"type": "uint256"
 					}
 				],
-				"name": "deliverOrder",
+				"name": "completeOrder",
 				"outputs": [],
 				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "orderCount",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"name": "orders",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "orderId",
-						"type": "uint256"
-					},
-					{
-						"internalType": "address",
-						"name": "buyer",
-						"type": "address"
-					},
-					{
-						"internalType": "uint256",
-						"name": "productId",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "quantity",
-						"type": "uint256"
-					},
-					{
-						"internalType": "enum SupplyChainContract.OrderStatus",
-						"name": "status",
-						"type": "uint8"
-					}
-				],
-				"stateMutability": "view",
 				"type": "function"
 			},
 			{
@@ -217,11 +193,6 @@
 					{
 						"internalType": "uint256",
 						"name": "_productId",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "_quantity",
 						"type": "uint256"
 					}
 				],
@@ -232,7 +203,7 @@
 			},
 			{
 				"inputs": [],
-				"name": "productCount",
+				"name": "productCounter",
 				"outputs": [
 					{
 						"internalType": "uint256",
@@ -254,11 +225,6 @@
 				"name": "products",
 				"outputs": [
 					{
-						"internalType": "uint256",
-						"name": "productId",
-						"type": "uint256"
-					},
-					{
 						"internalType": "string",
 						"name": "name",
 						"type": "string"
@@ -269,8 +235,37 @@
 						"type": "uint256"
 					},
 					{
+						"internalType": "address",
+						"name": "seller",
+						"type": "address"
+					},
+					{
+						"internalType": "bool",
+						"name": "isAvailable",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					},
+					{
 						"internalType": "uint256",
-						"name": "quantity",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "sellerProducts",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
 						"type": "uint256"
 					}
 				],
@@ -278,42 +273,35 @@
 				"type": "function"
 			},
 			{
-				"inputs": [],
-				"name": "seller",
-				"outputs": [
+				"inputs": [
+					{
+						"internalType": "enum Marketplace.Role",
+						"name": "_role",
+						"type": "uint8"
+					}
+				],
+				"name": "setRole",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
 					{
 						"internalType": "address",
 						"name": "",
 						"type": "address"
 					}
 				],
+				"name": "userRoles",
+				"outputs": [
+					{
+						"internalType": "enum Marketplace.Role",
+						"name": "",
+						"type": "uint8"
+					}
+				],
 				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "_buyer",
-						"type": "address"
-					}
-				],
-				"name": "setBuyerAddress",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "_orderId",
-						"type": "uint256"
-					}
-				],
-				"name": "shipOrder",
-				"outputs": [],
-				"stateMutability": "nonpayable",
 				"type": "function"
 			}
 		],
@@ -330,7 +318,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"1.sol": "SupplyChainContract"
+			"23_jan.sol": "Marketplace"
 		},
 		"evmVersion": "shanghai",
 		"libraries": {},
@@ -344,12 +332,12 @@
 		"remappings": []
 	},
 	"sources": {
-		"1.sol": {
-			"keccak256": "0x8d3e945f762ce2f0e6bdaa069d048d40e23b44a355f073618b92d02e2c82e036",
+		"23_jan.sol": {
+			"keccak256": "0xd3ccb7ea793133b2cff8788f6b7ab30ed22d1ff9e92880ed25f955dc6a8bc96d",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://2c78ab67ad524ad5e21d3f46295050c41671fd0ef0dcc84c30a0d1d1de789cc1",
-				"dweb:/ipfs/QmdrHTYVQYonGS7Hwup7Zd8jsJj5dS81oQJS9fxaTpV7L7"
+				"bzz-raw://ed955ff967692bd49a5814973fe4779aea684606e84df9fc77fbb1f740447724",
+				"dweb:/ipfs/QmTZqP3RNH7aT9EnWidkcs3i26uHTJbuEkgMZRaNo5SGfz"
 			]
 		}
 	},
